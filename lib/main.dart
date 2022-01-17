@@ -73,6 +73,31 @@ class _QuizzerState extends State<Quizzer> {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              Icon(
+                  Icons.check,
+                color: Colors.green,
+              ),
+              Icon(
+                Icons.close,
+                color: Colors.red,
+              ),
+              Icon(
+                Icons.close,
+                color: Colors.red,
+              ), Icon(
+                Icons.check,
+                color: Colors.green,
+              ), Icon(
+                Icons.check,
+                color: Colors.green,
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
