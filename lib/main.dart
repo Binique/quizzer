@@ -17,12 +17,33 @@ void main() {
 }
 class Quizzer extends StatefulWidget {
   const Quizzer({Key? key}) : super(key: key);
-
-  @override
+    @override
   _QuizzerState createState() => _QuizzerState();
 }
 
 class _QuizzerState extends State<Quizzer> {
+  List<Icon> IconResult=[
+    Icon(
+    Icons.check,
+    color: Colors.green,
+  ),
+    Icon(
+      Icons.close,
+      color: Colors.red,
+    ),
+    Icon(
+      Icons.close,
+      color: Colors.red,
+    ),
+    Icon(
+      Icons.check,
+      color: Colors.green,
+    ),
+    Icon(
+      Icons.check,
+      color: Colors.green,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return
@@ -76,26 +97,8 @@ class _QuizzerState extends State<Quizzer> {
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
-            children: [
-              Icon(
-                  Icons.check,
-                color: Colors.green,
-              ),
-              Icon(
-                Icons.close,
-                color: Colors.red,
-              ),
-              Icon(
-                Icons.close,
-                color: Colors.red,
-              ), Icon(
-                Icons.check,
-                color: Colors.green,
-              ), Icon(
-                Icons.check,
-                color: Colors.green,
-              ),
-            ],
+            children: IconResult
+            ,
           ),
         ),
       ],
