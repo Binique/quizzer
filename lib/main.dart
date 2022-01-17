@@ -37,7 +37,7 @@ class _QuizzerState extends State<Quizzer> {
             child: Center(
                 child:
                 Text('Le texte de la question',
-                     style: TextStyle(color: Colors.white,fontSize: 25.0),
+                     style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
                 ),
             ),
           ),
