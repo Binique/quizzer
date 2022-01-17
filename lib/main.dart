@@ -51,7 +51,16 @@ class _QuizzerState extends State<Quizzer> {
     Text('Le texte est la deuxieme question',
       style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
     ),
+    Text('Le texte est la troisieme question',
+      style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
+    ),
+    Text('Le texte est la quatrieme question',
+      style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
+    ),
   ];
+
+int questionNumber = 0;
+
 
   void changeIconCheck (){
     setState(() {
@@ -75,7 +84,7 @@ class _QuizzerState extends State<Quizzer> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Center(
-                child: listQuestions[1],
+                child: listQuestions[questionNumber],
 
             ),
           ),
@@ -86,6 +95,7 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
+                questionNumber++;
               changeIconCheck();
               },
               style: TextButton.styleFrom(backgroundColor: Colors.green),
@@ -101,6 +111,7 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
+                questionNumber++;
               changeIconClose();
               },
               style: TextButton.styleFrom(backgroundColor: Colors.red),
