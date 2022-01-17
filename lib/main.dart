@@ -22,11 +22,11 @@ class Quizzer extends StatefulWidget {
 }
 
 class _QuizzerState extends State<Quizzer> {
-  List<Icon> IconResult=[
+  List<Icon> IconResult = [
     Icon(
-    Icons.check,
-    color: Colors.green,
-  ),
+      Icons.check,
+      color: Colors.green,
+    ),
     Icon(
       Icons.close,
       color: Colors.red,
@@ -44,6 +44,17 @@ class _QuizzerState extends State<Quizzer> {
       color: Colors.green,
     ),
   ];
+
+  void changeIconCheck (){
+    setState(() {
+      IconResult.add( Icon(Icons.check, color: Colors.green));
+    });
+  }
+  void changeIconClose (){
+    setState(() {
+      IconResult.add( Icon(Icons.close, color: Colors.red));
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return
@@ -69,7 +80,7 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-
+              changeIconCheck();
               },
               style: TextButton.styleFrom(backgroundColor: Colors.green),
               child:
@@ -84,7 +95,7 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-
+              changeIconClose();
               },
               style: TextButton.styleFrom(backgroundColor: Colors.red),
               child:
