@@ -26,7 +26,32 @@ class Quizzer extends StatefulWidget {
 
 class _QuizzerState extends State<Quizzer> {
   List<Icon> IconResult = [];
-  
+
+  void checkAnswer(bool reponseutilisateur) {
+    setState(() {
+      bool bonneReponse = quizzBrain.getQuestionAnswer();
+      if (IconResult.length != quizzBrain.getQuestionLength()) {
+      if (bonneReponse == reponseutilisateur) {
+        IconResult.add(
+          Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+      } else {
+        IconResult.add(
+          Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      }
+      }
+      quizzBrain.nextQuestion();
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return
@@ -52,36 +77,15 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse = quizzBrain.getQuestionAnswer();
-                setState(() {
-                  if (IconResult.length != quizzBrain.getQuestionLength()) {
-                    if (bonneReponse == true) {
-                      IconResult.add(
-                        Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ),
-                      );
-                    } else {
-                      IconResult.add(
-                        Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ),
-                      );
-                    }
-                  }
-                });
-
-                quizzBrain.nextQuestion();
-
+              checkAnswer(true);
               },
               style: TextButton.styleFrom(backgroundColor: Colors.green),
-              child:
-               const Text('Vrai', style: TextStyle(color: Colors.white,fontSize: 20),
-               ),
+
+             child:
+             const Text('Vrai',style: TextStyle(color: Colors.white,fontSize: 20),
+           ),
             ),
-          ),
+        ),
         ),
         Expanded(
           child:
@@ -89,29 +93,7 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse =  quizzBrain.getQuestionAnswer();
-                setState(() {
-                    if(IconResult.length != quizzBrain.getQuestionLength()) {
-                      if (bonneReponse == false) {
-                        IconResult.add(
-                          Icon(
-                            Icons.close,
-                            color: Colors.red,
-                          ),
-                        );
-                      } else {
-                        IconResult.add(
-                          Icon(
-                            Icons.check,
-                            color: Colors.green,
-                          ),
-                        );
-                      }
-                    }
-                });
-
-                quizzBrain.nextQuestion();
-
+                checkAnswer(false);
               },
               style: TextButton.styleFrom(backgroundColor: Colors.red),
               child:
