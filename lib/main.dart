@@ -26,21 +26,7 @@ class Quizzer extends StatefulWidget {
 
 class _QuizzerState extends State<Quizzer> {
   List<Icon> IconResult = [];
-
-
-
-  int questionNumber = 0;
-
-
-
-  void questionSuivante(){
-   
-    if (questionNumber<quizzBrain.getQuestionLength() - 1){
-      questionNumber++;
-    }
-  }
-
-
+  
   @override
   Widget build(BuildContext context) {
     return
@@ -53,7 +39,7 @@ class _QuizzerState extends State<Quizzer> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Center(
-                child: Text( quizzBrain.getQuestionText(questionNumber),
+                child: Text( quizzBrain.getQuestionText(),
                   style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
                 ),
 
@@ -66,7 +52,7 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse = quizzBrain.getQuestionAnswer(questionNumber);
+                bool bonneReponse = quizzBrain.getQuestionAnswer();
                 setState(() {
                   if (IconResult.length != quizzBrain.getQuestionLength()) {
                     if (bonneReponse == true) {
@@ -87,7 +73,7 @@ class _QuizzerState extends State<Quizzer> {
                   }
                 });
 
-                questionSuivante();
+                quizzBrain.nextQuestion();
 
               },
               style: TextButton.styleFrom(backgroundColor: Colors.green),
@@ -103,7 +89,7 @@ class _QuizzerState extends State<Quizzer> {
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse =  quizzBrain.getQuestionAnswer(questionNumber);
+                bool bonneReponse =  quizzBrain.getQuestionAnswer();
                 setState(() {
                     if(IconResult.length != quizzBrain.getQuestionLength()) {
                       if (bonneReponse == false) {
@@ -124,7 +110,7 @@ class _QuizzerState extends State<Quizzer> {
                     }
                 });
 
-                questionSuivante();
+                quizzBrain.nextQuestion();
 
               },
               style: TextButton.styleFrom(backgroundColor: Colors.red),

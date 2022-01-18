@@ -1,7 +1,7 @@
 import 'question.dart';
 
  class  QuizzBrain {
-
+   int _questionNumber = 0;
   List<Question>_Questions= [
     Question('Question 1', true),
     Question('Question 2', false),
@@ -9,19 +9,19 @@ import 'question.dart';
     Question('Question 4', true),
   ];
 
-
-
-
-
-  String getQuestionText(int questionNumber) {
-    return _Questions[questionNumber].listQuestions;
+  String getQuestionText() {
+    return _Questions[_questionNumber].listQuestions;
   }
 
-  bool getQuestionAnswer(int questionNumber) {
-    return _Questions[questionNumber].reponses;
+  bool getQuestionAnswer() {
+    return _Questions[_questionNumber].reponses;
   }
   int getQuestionLength() {
     return _Questions.length;
   }
-
+   void nextQuestion(){
+     if (_questionNumber<_Questions.length - 1){
+       _questionNumber++;
+     }
+   }
 }
