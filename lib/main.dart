@@ -22,56 +22,22 @@ class Quizzer extends StatefulWidget {
 }
 
 class _QuizzerState extends State<Quizzer> {
-  List<Icon> IconResult = [
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-  ];
-  List<Text> listQuestions = [
-    Text('Le texte de la question',
-      style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
-    ),
-    Text('Le texte est la deuxieme question',
-      style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
-    ),
-    Text('Le texte est la troisieme question',
-      style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
-    ),
-    Text('Le texte est la quatrieme question',
-      style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
-    ),
+  List<Icon> IconResult = [];
+
+  List<String> listQuestions = ['Le texte de la question','Le texte est la deuxieme question',
+    'Le texte est la troisieme question',
+    'Le texte est la quatrieme question',
   ];
 
 int questionNumber = 0;
 
+  void questionSuivante(){
+    if (questionNumber<listQuestions.length - 1){
+      questionNumber++;
+    }
+  }
+  List<bool> reponses = [ true , true, false,false ];
 
-  void changeIconCheck (){
-    setState(() {
-      IconResult.add( Icon(Icons.check, color: Colors.green));
-    });
-  }
-  void changeIconClose (){
-    setState(() {
-      IconResult.add( Icon(Icons.close, color: Colors.red));
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return
@@ -84,7 +50,9 @@ int questionNumber = 0;
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Center(
-                child: listQuestions[questionNumber],
+                child: Text( listQuestions[questionNumber],
+                  style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
+                ),
 
             ),
           ),
@@ -95,8 +63,29 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                questionNumber++;
-              changeIconCheck();
+                bool bonneReponse =  reponses[questionNumber];
+                setState(() {
+
+                  if (bonneReponse == true) {
+                    IconResult.add(
+                      Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ),
+                    );
+                  } else {
+                    IconResult.add(
+                      Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    );
+                  }
+
+                });
+
+                questionSuivante();
+
               },
               style: TextButton.styleFrom(backgroundColor: Colors.green),
               child:
@@ -111,8 +100,29 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                questionNumber++;
-              changeIconClose();
+                bool bonneReponse =  reponses[questionNumber];
+                setState(() {
+
+                    if (bonneReponse == false) {
+                      IconResult.add(
+                        Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                      );
+                    } else {
+                      IconResult.add(
+                        Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
+                      );
+                    }
+
+                });
+
+                questionSuivante();
+
               },
               style: TextButton.styleFrom(backgroundColor: Colors.red),
               child:
