@@ -29,13 +29,13 @@ class _QuizzerState extends State<Quizzer> {
 
 
 
-int questionNumber = 0;
+  int questionNumber = 0;
 
 
 
   void questionSuivante(){
    
-    if (questionNumber<quizzBrain.listQuestions.length - 1){
+    if (questionNumber<quizzBrain.getQuestionLength() - 1){
       questionNumber++;
     }
   }
@@ -53,7 +53,7 @@ int questionNumber = 0;
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Center(
-                child: Text( quizzBrain.listQuestions[questionNumber].listQuestions,
+                child: Text( quizzBrain.getQuestionText(questionNumber),
                   style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
                 ),
 
@@ -66,9 +66,9 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse = quizzBrain.listQuestions[questionNumber].reponses;
+                bool bonneReponse = quizzBrain.getQuestionAnswer(questionNumber);
                 setState(() {
-                  if (IconResult.length != quizzBrain.listQuestions.length) {
+                  if (IconResult.length != quizzBrain.getQuestionLength()) {
                     if (bonneReponse == true) {
                       IconResult.add(
                         Icon(
@@ -103,9 +103,9 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse =  quizzBrain.listQuestions[questionNumber].reponses;
+                bool bonneReponse =  quizzBrain.getQuestionAnswer(questionNumber);
                 setState(() {
-                    if(IconResult.length != quizzBrain.listQuestions.length) {
+                    if(IconResult.length != quizzBrain.getQuestionLength()) {
                       if (bonneReponse == false) {
                         IconResult.add(
                           Icon(
