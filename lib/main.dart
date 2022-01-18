@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quizzBrain.dart';
+
+QuizzBrain quizzBrain = QuizzBrain();
+
 void main() {
   runApp(
      MaterialApp(
@@ -24,7 +27,6 @@ class Quizzer extends StatefulWidget {
 class _QuizzerState extends State<Quizzer> {
   List<Icon> IconResult = [];
 
-  List<Question> listQuestions= [Question('Question 1', true)];
 
 
 int questionNumber = 0;
@@ -32,7 +34,8 @@ int questionNumber = 0;
 
 
   void questionSuivante(){
-    if (questionNumber<listQuestions.length - 1){
+   
+    if (questionNumber<quizzBrain.listQuestions.length - 1){
       questionNumber++;
     }
   }
@@ -50,7 +53,7 @@ int questionNumber = 0;
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Center(
-                child: Text( listQuestions[questionNumber].listQuestions,
+                child: Text( quizzBrain.listQuestions[questionNumber].listQuestions,
                   style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
                 ),
 
@@ -63,9 +66,9 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse = listQuestions[questionNumber].reponses;
+                bool bonneReponse = quizzBrain.listQuestions[questionNumber].reponses;
                 setState(() {
-                  if (IconResult.length != listQuestions.length) {
+                  if (IconResult.length != quizzBrain.listQuestions.length) {
                     if (bonneReponse == true) {
                       IconResult.add(
                         Icon(
@@ -100,9 +103,9 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse =  listQuestions[questionNumber].reponses;
+                bool bonneReponse =  quizzBrain.listQuestions[questionNumber].reponses;
                 setState(() {
-                    if(IconResult.length != listQuestions.length) {
+                    if(IconResult.length != quizzBrain.listQuestions.length) {
                       if (bonneReponse == false) {
                         IconResult.add(
                           Icon(
@@ -142,6 +145,8 @@ int questionNumber = 0;
       ],
     );
   }
+
+
 }
 
 
