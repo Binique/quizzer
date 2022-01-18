@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'question.dart';
 void main() {
   runApp(
      MaterialApp(
@@ -24,19 +24,19 @@ class Quizzer extends StatefulWidget {
 class _QuizzerState extends State<Quizzer> {
   List<Icon> IconResult = [];
 
-  List<String> listQuestions = ['Le texte de la question','Le texte est la deuxieme question',
-    'Le texte est la troisieme question',
-    'Le texte est la quatrieme question',
-  ];
+  List<Question> listQuestions= [Question('Question 1', true)];
+
 
 int questionNumber = 0;
+
+
 
   void questionSuivante(){
     if (questionNumber<listQuestions.length - 1){
       questionNumber++;
     }
   }
-  List<bool> reponses = [ true , true, false,false ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ int questionNumber = 0;
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Center(
-                child: Text( listQuestions[questionNumber],
+                child: Text( listQuestions[questionNumber].listQuestions,
                   style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
                 ),
 
@@ -63,7 +63,7 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse =  reponses[questionNumber];
+                bool bonneReponse = listQuestions[questionNumber].reponses;
                 setState(() {
                   if (IconResult.length != listQuestions.length) {
                     if (bonneReponse == true) {
@@ -100,7 +100,7 @@ int questionNumber = 0;
             padding: const EdgeInsets.all(15.0),
             child: TextButton(
               onPressed: () {
-                bool bonneReponse =  reponses[questionNumber];
+                bool bonneReponse =  listQuestions[questionNumber].reponses;
                 setState(() {
                     if(IconResult.length != listQuestions.length) {
                       if (bonneReponse == false) {
