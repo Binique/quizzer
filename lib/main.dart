@@ -65,23 +65,23 @@ int questionNumber = 0;
               onPressed: () {
                 bool bonneReponse =  reponses[questionNumber];
                 setState(() {
-
-                  if (bonneReponse == true) {
-                    IconResult.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                  } else {
-                    IconResult.add(
-                      Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    );
+                  if (IconResult.length != listQuestions.length) {
+                    if (bonneReponse == true) {
+                      IconResult.add(
+                        Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
+                      );
+                    } else {
+                      IconResult.add(
+                        Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                      );
+                    }
                   }
-
                 });
 
                 questionSuivante();
@@ -102,23 +102,23 @@ int questionNumber = 0;
               onPressed: () {
                 bool bonneReponse =  reponses[questionNumber];
                 setState(() {
-
-                    if (bonneReponse == false) {
-                      IconResult.add(
-                        Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ),
-                      );
-                    } else {
-                      IconResult.add(
-                        Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ),
-                      );
+                    if(IconResult.length != listQuestions.length) {
+                      if (bonneReponse == false) {
+                        IconResult.add(
+                          Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                        );
+                      } else {
+                        IconResult.add(
+                          Icon(
+                            Icons.check,
+                            color: Colors.green,
+                          ),
+                        );
+                      }
                     }
-
                 });
 
                 questionSuivante();
