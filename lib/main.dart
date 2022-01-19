@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quizzBrain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart' show Alert;
 
 QuizzBrain quizzBrain = QuizzBrain();
 
@@ -26,31 +27,30 @@ class Quizzer extends StatefulWidget {
 
 class _QuizzerState extends State<Quizzer> {
   List<Icon> IconResult = [];
+  int score = 0;
 
-  void checkAnswer(bool reponseutilisateur) {
+  checkAnswer(bool reponseUtilisateur) {
+    bool bonneReponse = quizzBrain.getQuestionAnswer();
     setState(() {
-      bool bonneReponse = quizzBrain.getQuestionAnswer();
-      if (IconResult.length != quizzBrain.getQuestionLength()) {
-      if (bonneReponse == reponseutilisateur) {
-        IconResult.add(
-          Icon(
-            Icons.check,
-            color: Colors.green,
-          ),
-        );
+      if (bonneReponse == reponseUtilisateur) {
+        score++;
+        IconResult.add(Icon(Icons.check, color: Colors.green));
       } else {
-        IconResult.add(
-          Icon(
-            Icons.close,
-            color: Colors.red,
-          ),
-        );
-      }
+        IconResult.add(Icon(Icons.close, color: Colors.red));
       }
       quizzBrain.nextQuestion();
     });
+    if (IconResult.length == quizzBrain.getQuestionLength()) {
+      Alert(
+        context: context,
+        title: "Félicitations",
+        desc: "Quiz terminé. Vous avez eu $score bonnes réponses.",
+      ).show();
+      score = 0;
+      quizzBrain.reset();
+      IconResult = [];
+    }
   }
-
 
   @override
   Widget build(BuildContext context) {

@@ -24,4 +24,8 @@ import 'question.dart';
        _questionNumber++;
      }
    }
-}
+   void reset (){
+     _questionNumber = 0;
+   }
+ }
+
